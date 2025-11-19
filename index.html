@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dunder Mifflin Branch Finder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; }
+    label { display: block; margin-bottom: 0.5rem; }
+    input { padding: 0.5rem; width: 100%; max-width: 300px; }
+    button { margin-top: 0.5rem; padding: 0.5rem 1rem; cursor: pointer; }
+    .branch-card {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dunder Mifflin Branch Finder</h1>
+  <p>Search by city or ZIP to find your nearest branch.</p>
+
+  <form id="search-form">
+    <label for="city">City</label>
+    <input id="city" name="city" placeholder="Scranton" />
+
+    <label for="zip">ZIP code</label>
+    <input id="zip" name="zip" placeholder="18503" />
+
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="results"></div>
+
+  <script>
+    const API_BASE = "https://dunder-branches-api.redsea-2a28b856.westus2.azurecontainerapps.io";
+
+    const form = document.getElementById("search-form");
+    const resultsDiv = document.getElementById("results");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      resultsDiv.textContent = "Searching...";
+
+      const city = document.getElementById("city").value.trim();
+      const zip = document.getElementById("zip").value.trim();
+
+      const params = new URLSearchParams();
+      if (city) params.append("city", city);
+      if (zip) params.append("zip", zip);
+
+      let url = `${API_BASE}/branches`;
+      if ([...params].length > 0) {
+        url += `?${params.toString()}`;
+      }
+
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) {
+          resultsDiv.textContent = `Error: ${resp.status}`;
+          return;
+        }
+
+        const data = await resp.json();
+        if (!data || data.length === 0) {
+          resultsDiv.textContent = "No branches found.";
+          return;
+        }
+
+        resultsDiv.innerHTML = "";
+        data.forEach(branch => {
+          const card = document.createElement("div");
+          card.className = "branch-card";
+          card.innerHTML = `
+            <h2>${branch.name}</h2>
+            <p><strong>City:</strong> ${branch.city}, ${branch.state}</p>
+            <p><strong>Address:</strong> ${branch.address}</p>
+            <p><strong>ZIP:</strong> ${branch.zip}</p>
+            <p><strong>Phone:</strong> ${branch.phone}</p>
+          `;
+          resultsDiv.appendChild(card);
+        });
+      } catch (err) {
+        console.error(err);
+        resultsDiv.textContent = "Error contacting API.";
+      }
+    });
+  </script>
+</body>
+</html>
+
