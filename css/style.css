@@ -1,0 +1,187 @@
+/* Simple, lightweight styles */
+:root {
+  --ink: #0f1f3a;
+  --accent: #1f4b99;
+  --paper: #f7f7f7;
+  --card: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.hero {
+  max-width: 960px;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+.hero p {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.primary-action {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.primary-action:hover { text-decoration: none; opacity: 0.92; }
+
+.section {
+  max-width: 960px;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.section h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.list {
+  padding-left: 1.1rem;
+  margin: 0.5rem 0 0;
+}
+
+.list li {
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+footer {
+  max-width: 960px;
+  margin: 2rem auto 3rem;
+  padding: 0 1.5rem;
+  color: #3b4a5b;
+  font-size: 0.95rem;
+}
+
+/* Branch finder */
+.branch-page {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 1rem 1.25rem 2rem;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.branch-page h1 { margin-top: 0; }
+
+.branch-page label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.branch-page input {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 320px;
+  border: 1px solid #cfd6e0;
+  border-radius: 4px;
+}
+
+.branch-page button {
+  margin-top: 0.75rem;
+  padding: 0.55rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.branch-card {
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.branch-flex {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.branch-form {
+  flex: 1 1 260px;
+}
+
+.branch-photo {
+  flex: 0 0 220px;
+  max-width: 260px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.5rem;
+  background: #fff;
+}
+
+.branch-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
